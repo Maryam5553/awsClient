@@ -100,7 +100,6 @@ func CreateS3EncryptionClient(hsm_client_address string, keyHSM_1 hsmClient.KeyH
 
 func main() {
 	// command-line arguments
-
 	hsm_client_port_flag := flag.Int("HSMclient", HSM_CLIENT_DEFAULT_PORT, "HSM client port")
 	localstack_flag := flag.Bool("localstack", false, "if true, the AWS client will connect to LocalStack. Otherwise (default behaviour), it will connect to a AWS account")
 

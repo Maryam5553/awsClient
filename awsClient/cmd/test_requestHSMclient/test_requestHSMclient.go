@@ -2,13 +2,20 @@ package main
 
 import (
 	hsmClient "awsClient/pkg/requestHSMclient"
+	"flag"
 	"fmt"
+	"strconv"
 )
 
 // address of the HSM client
-const HSM_CLIENT_ADDRESS = "localhost:8080"
+const HSM_CLIENT_DEFAULT_PORT = 6123
 
 func main() {
+	// command-line arguments
+	hsm_client_port_flag := flag.Int("HSMclient", HSM_CLIENT_DEFAULT_PORT, "HSM client port")
+	flag.Parse()
+	HSM_CLIENT_ADDRESS := "localhost:" + strconv.Itoa(*hsm_client_port_flag)
+
 	// keys we want to retrieve on 2 different HSM
 	keyHSM_1 := hsmClient.KeyHSM{
 		Hsm_number: 17, // keystore key17
