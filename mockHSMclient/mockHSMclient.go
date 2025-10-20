@@ -17,7 +17,7 @@ import (
 */
 
 // mock HSM client port
-const PORT = "8080"
+const PORT = "6123"
 
 const (
 	GET_KEY_REQUEST_CODE byte = 0 // request code for the client HSM (get key)
