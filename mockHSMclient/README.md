@@ -9,7 +9,7 @@ Golang
 
 ## Run
 
-By default the server will listen on port 8080.
+By default the server will listen on port 6123.
 
 ```go run mockHSMclient.go```
 
