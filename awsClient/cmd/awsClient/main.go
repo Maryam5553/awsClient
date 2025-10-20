@@ -13,6 +13,7 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/aws/aws-sdk-go-v2/credentials"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 
 	"github.com/aws/amazon-s3-encryption-client-go/v3/client"
@@ -37,7 +38,9 @@ func CreateS3Client_Locastack() (*s3.Client, error) {
 
 	// créer la configuration avec la région
 	awsCfg, err := config.LoadDefaultConfig(context.TODO(),
-		config.WithRegion(awsRegion),
+		config.WithRegion(awsRegion), config.WithCredentialsProvider(
+			credentials.NewStaticCredentialsProvider("test", "test", ""),
+		),
 	)
 	if err != nil {
 		return nil, fmt.Errorf("cannot load the AWS configs: %w", err)
