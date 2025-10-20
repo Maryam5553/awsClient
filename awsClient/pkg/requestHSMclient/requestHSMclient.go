@@ -7,8 +7,9 @@ import (
 )
 
 const (
-	GET_KEY_REQUEST_CODE byte = 0 // request code for the client HSM (get key)
-	GET_KEY_SUCCESS_CODE byte = 0 // code returned by the HSM client if the key request was successfull
+	GET_KEY_REQUEST_CODE byte = 0  // request code for the client HSM (get key)
+	GET_KEY_SUCCESS_CODE byte = 0  // code returned by the HSM client if the key request was successfull
+	ANSWER_BUF_SIZE      int  = 17 // size of the expected answer from the HSM client (success byte + 16 key bytes)
 )
 
 // structure to represent a key on a given HSM.
@@ -52,7 +53,7 @@ func SendKeyRequest(conn net.Conn, keyHSM KeyHSM) ([]byte, error) {
 	}
 
 	// wait for HSM client answer
-	buf := make([]byte, 1024)
+	buf := make([]byte, ANSWER_BUF_SIZE)
 	_, err = conn.Read(buf)
 	if err != nil {
 		return []byte{}, fmt.Errorf("error reading key request (index %d) answer from HSM %d: %w", keyHSM.Key_index, keyHSM.Hsm_number, err)
