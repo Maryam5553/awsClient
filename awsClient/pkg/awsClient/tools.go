@@ -27,7 +27,7 @@ func verifierDossier(client *client.S3EncryptionClientV3, bucket, sous_rep strin
 	if estPresent {
 		return 2, nil
 	} else {
-		fmt.Println("le dossier où vous voulez mettre le fichier n'existe pas, voulez-vous en créer un avec le nom que vous avez donné ? (O/N)")
+		fmt.Print("le dossier où vous voulez mettre le fichier n'existe pas, voulez-vous en créer un avec le nom que vous avez donné ? (O/N)  ")
 		reader := bufio.NewReader(os.Stdin)
 		char, _, err := reader.ReadRune()
 		if err != nil {
@@ -49,8 +49,8 @@ func verifierDossier(client *client.S3EncryptionClientV3, bucket, sous_rep strin
 func verifierKey(client *client.S3EncryptionClientV3, bucket, key string) int {
 	estPresent, _ := inAWSS3(client, bucket, key)
 	if estPresent {
-		fmt.Printf("Il y a déja un fichier avec ce nom dans le bucket %s, l'action de Put remplacera entièrement le fichier (ou modifira le dossier)", bucket)
-		fmt.Println("Voulez-vous continuer ? (O/N)")
+		fmt.Printf("Il y a déjà un fichier avec ce nom dans le bucket %s. L'action de Put remplacera le fichier (ou modifira le dossier). ", bucket)
+		fmt.Print("Voulez-vous continuer ? (O/N)  ")
 		reader := bufio.NewReader(os.Stdin)
 		char, _, err := reader.ReadRune()
 		if err != nil {

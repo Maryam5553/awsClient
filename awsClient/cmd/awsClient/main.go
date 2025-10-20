@@ -108,7 +108,7 @@ func main() {
 
 	flag.Parse()
 	HSM_CLIENT_ADDRESS := "localhost:" + strconv.Itoa(*hsm_client_port_flag)
-	fmt.Printf("HSM client address %s", HSM_CLIENT_ADDRESS)
+	fmt.Printf("HSM client address : %s\n", HSM_CLIENT_ADDRESS)
 
 	// keys we want to retrieve on 2 different HSM
 	keyHSM_1 := hsmClient.KeyHSM{
@@ -128,6 +128,12 @@ func main() {
 
 	// Une fois le mode de chiffrement décidé, on peut demander à l'utilisateur
 	// ce qu'il veut faire comme actions. cf fichier init.go
+	fmt.Println("\n*** Ce client AWS permet d'exporter et télécharger des fichiers sur S3, en réalisant un chiffrement côté client, grâce à des clés stockées sur Ethertrust. ***")
+	
+	// lister les actions qu'il est possible de faire pour utiliser ce programme
+	fmt.Println("\nCommandes possibles :")
+	awsClient.ListInteractions()
+	
 	tmp := 1
 	for tmp != 0 {
 		tmp = awsClient.InteractionConsole(s3EncryptionClient) // fonction dans init.go

@@ -2,7 +2,6 @@ package requestHSMclient
 
 import (
 	"fmt"
-	"log"
 	"net"
 )
 
@@ -117,7 +116,9 @@ func GetKey(hsm_client_addr string, keyHSM_1 KeyHSM, keyHSM_2 KeyHSM) []byte {
 		// if the first goroutine to finish returns an error,
 		// print the error and continue
 		if res.err != nil {
-			log.Println(res.err)
+			// don't print this error as if one request succeed we can't ignore the other error
+			// we'll only print it if both requests fail
+			// log.Println(res.err)
 			continue
 		} else {
 			// else : a key was returned

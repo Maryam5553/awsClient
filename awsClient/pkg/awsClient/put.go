@@ -106,8 +106,8 @@ func PutObject(client *client.S3EncryptionClientV3, chemin, bucket, key string) 
 // TODO : gérer le cas des dossiers - faire des requetes parallèles ?
 func traiterPut(client *client.S3EncryptionClientV3, reader *bufio.Reader) (*s3.PutObjectOutput, error) {
 	//Idem : On récupère les infos de l'utilisateur pour appeller notre fonction
-	fmt.Println("vous avez demandé à mettre un fichier sur amazon S3 !")
-	fmt.Println("Veuillez indiquer le chemin du fichier/repertoire que vous voulez mettre sur Amazon S3")
+	fmt.Println("Vous avez demandé à mettre un fichier sur amazon S3 !")
+	fmt.Print("- chemin du fichier/repertoire à mettre sur AWS S3 :  ")
 	_, _ = reader.ReadString('\n')
 	chemin, err := reader.ReadString('\n')
 	if err != nil {
@@ -117,7 +117,7 @@ func traiterPut(client *client.S3EncryptionClientV3, reader *bufio.Reader) (*s3.
 	chemin = strings.TrimSuffix(chemin, "\n")
 	//Ici, on récupère le chemin absolu pour que deux fichiers différents ne soient pas avec la même clé
 	//absolutePath, err := filepath.Abs(chemin)
-	fmt.Println("Veuillez indiquer le bucket ou vous mettrez ce fichier")
+	fmt.Print("- nom du bucket S3 où mettre ce fichier :  ")
 	//TODO : faire une option permettant d'afficher tous les buckets
 	bucket, err := reader.ReadString('\n')
 	if err != nil {
@@ -139,7 +139,7 @@ func traiterPut(client *client.S3EncryptionClientV3, reader *bufio.Reader) (*s3.
 		return nil, err
 	}
 
-	fmt.Println("Dans quel sous-dossier voulez vous mettre le fichier/repertoire ?")
+	fmt.Print("- sous-dossier dans lequel mettre le fichier/repertoire :  ")
 	sous_rep, err := reader.ReadString('\n')
 	if err != nil {
 		fmt.Println("An error occured while reading input. Please try again", err)
@@ -156,7 +156,7 @@ func traiterPut(client *client.S3EncryptionClientV3, reader *bufio.Reader) (*s3.
 		}
 	}
 
-	fmt.Println("Quel nom voulez vous donner au fichier/Dossier dans Amazon S3 ?")
+	fmt.Print("- nom à donner au fichier/dossier dans Amazon S3 :  ")
 	key, err := reader.ReadString('\n')
 	if err != nil {
 		fmt.Println("An error occured while reading input. Please try again", err)

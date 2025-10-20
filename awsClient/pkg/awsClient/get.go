@@ -28,8 +28,8 @@ func GetObject(client *client.S3EncryptionClientV3, root *Node, chemin, bucket, 
 		fmt.Printf("L'action Get a pris %v\n", duration)
 	}()
 	if root.IsFile {
-		fmt.Println("cas 1 (fichier)")
-		fmt.Printf("chemin =%s, bucket = %s, key =%s\n", chemin, bucket, key)
+		// fmt.Println("cas 1 (fichier)")
+		// fmt.Printf("chemin =%s, bucket = %s, key =%s\n", chemin, bucket, key)
 
 		// test taille
 		headObject, err := client.HeadObject(context.TODO(), &s3.HeadObjectInput{
@@ -40,7 +40,7 @@ func GetObject(client *client.S3EncryptionClientV3, root *Node, chemin, bucket, 
 			fmt.Println("Erreur lors de la récupération des métadonnées :", err)
 			return nil, err
 		}
-		fmt.Printf("taille fichier : %d octets\n", int(*headObject.ContentLength))
+		// fmt.Printf("taille fichier : %d octets\n", int(*headObject.ContentLength))
 
 		ctx := context.TODO()
 		ctx = context.WithValue(ctx, MyMaterials.FavContextKey("x"), []byte(bucket+"/"+key))

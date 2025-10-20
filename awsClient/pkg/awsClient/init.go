@@ -8,18 +8,22 @@ import (
 	"github.com/aws/amazon-s3-encryption-client-go/v3/client"
 )
 
-
+// affiche les actions possibles pour intéragir avec le programme
+func ListInteractions() {
+	fmt.Println("P = mettre un fichier sur Amazon S3\nG = récupérer un fichier\nL = lister les buckets présents sur S3\nA = afficher l'arborescence de fichiers sur S3\nD = supprimer tous les fichiers de amazon S3\nX = arrêter le programme")
+}
 
 // Le menu d'interface principal avec le client, lui proposant des actions
 // (put, get, afficher l'arborescence...)
 func InteractionConsole(client *client.S3EncryptionClientV3) int {
 	fmt.Println()
-	fmt.Println("Entrer une lettre pour effectuer une action:\nP = mettre un fichier sur Amazon S3\nG = récupérer un fichier\nL = lister les buckets présents sur S3\nA = afficher l'arborescence de fichiers sur S3\nD = supprimer tous les fichiers de amazon S3\nX = arrêter le programme")
+	fmt.Print("> Entrer une lettre pour effectuer une action (H: afficher les commandes possibles) :  ")
 	reader := bufio.NewReader(os.Stdin)
 	char, _, err := reader.ReadRune()
 	if err != nil {
 		fmt.Println("An error occured while reading input. Please try again", err)
 	}
+	fmt.Println()
 	//TODO : gérer le resultats des putObject et GetObject : en fait on en a pas besoin donc
 	// la fonction pourrait juste retourner "err"
 	if char == 'P' {
@@ -34,6 +38,8 @@ func InteractionConsole(client *client.S3EncryptionClientV3) int {
 		AfficherArborescence(client) // cf tree.go
 	} else if char == 'D' {
 		CleanS3(client) // cf clean.go
+	} else if char == 'H' {
+		ListInteractions()
 	} else {
 		fmt.Println("Entrée non reconnue, veuillez recommencer")
 	}
