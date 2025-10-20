@@ -66,6 +66,9 @@ func (ccm *CustomCryptographicMaterialsManager) GetEncryptionMaterials(ctx conte
 	if len(key) == 0 {
 		return nil, fmt.Errorf("couldn't retrieve key for encryption")
 	}
+	// TODO à enlever !! affiche la clé récupérée
+	fmt.Println("*clé récupérée pour le chiffrement du fichier :")
+	fmt.Println(key)
 	k2 := *big.NewInt(1)
 	key2 := k2.Bytes()
 	// vecteur d'initialisation

@@ -13,6 +13,7 @@ import (
 // Le menu d'interface principal avec le client, lui proposant des actions
 // (put, get, afficher l'arborescence...)
 func InteractionConsole(client *client.S3EncryptionClientV3) int {
+	fmt.Println()
 	fmt.Println("Entrer une lettre pour effectuer une action:\nP = mettre un fichier sur Amazon S3\nG = récupérer un fichier\nL = lister les buckets présents sur S3\nA = afficher l'arborescence de fichiers sur S3\nD = supprimer tous les fichiers de amazon S3\nX = arrêter le programme")
 	reader := bufio.NewReader(os.Stdin)
 	char, _, err := reader.ReadRune()

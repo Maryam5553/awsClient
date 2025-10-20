@@ -32,7 +32,7 @@ func PutObject(client *client.S3EncryptionClientV3, chemin, bucket, key string) 
 
 	//On regarde s'il s'agit d'un repertoire ou d'un simple fichier
 	if !info.IsDir() {
-		fmt.Println("avant la lecture du fichier")
+		// fmt.Println("avant la lecture du fichier")
 		file, err := os.Open(chemin)
 
 		if err != nil {
@@ -46,7 +46,7 @@ func PutObject(client *client.S3EncryptionClientV3, chemin, bucket, key string) 
 		ctx := context.TODO()
 		ctx = context.WithValue(ctx, MyMaterials.FavContextKey("x"), []byte(bucket+"/"+key))
 
-		fmt.Println("juste avant le test de la taille")
+		// fmt.Println("juste avant le test de la taille")
 		// cas d'un gros fichier
 		if info.Size() > 500*1000*1000 {
 			fmt.Println("gros fichier !")
