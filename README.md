@@ -21,7 +21,7 @@ Go 1.23
         aws_secret_access_key = ***************************************
         ```
         Par défault le client AWS va lire ce fichier et se connecter à ce compte.
-    - **setup LocalStack** Après avoir installé LocalStack, il faut le lancer avec la commande ```localstack start```. Pour utiliser le client AWS avec LocalStack, il faudra ajouter l'arguement ```-localstack true``` en lançant le programme. Par défaut l'endpoint est "http://localhost:4566"
+    - **setup LocalStack** Après avoir installé LocalStack, il faut le lancer avec la commande ```localstack start```. Pour utiliser le client AWS avec LocalStack, il faudra ajouter l'arguement ```-localstack``` en lançant le programme. Par défaut l'endpoint est "http://localhost:4566"
 
 - Lancer le client HSM. Si on n'a pas de client HSM, on peut tester avec le programme mockHSMclient.go. Depuis le répertoire mockHSMclient/ : ```go run mockHSMclient.go```. Le port par défaut est 6123.
 
